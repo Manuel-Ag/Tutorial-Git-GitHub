@@ -1,0 +1,95 @@
+---
+layout: post
+title:  "Firebase Storage"
+date:   2020-01-22 14:30:00 +0200
+categories: segundo_trimestre
+order: 1
+parent: Segundo trimestre Android
+---
+
+[GitHub](https://github.com/Manuel-Ag/PMD_19-20/tree/master/firebase){: .btn .btn-blue } [Documentación](https://firebase.google.com/docs/storage){: .btn .btn-green }
+
+# Firebase Storage
+
+Firebase Storage nos permite alojar ficheros, ya sean audios, videos, etc.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_tyjqozrEPY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+No olvides configurar las reglas también en Firebase Storage:
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/img_post_storage/captura1.png)
+{:refdef}
+
+El primer paso es instanciar la clase `FirebaseStorageReference` a través la cual realizaremos todas las acciones:
+
+```java
+StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
+```
+
+## Subir imagen
+
+```java
+public void upload(View v) {
+    Uri file = Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.captura);
+    StorageReference riversRef = mStorageRef.child("images/rivers.jpg");
+
+    riversRef.putFile(file)
+            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // Get a URL to the uploaded content
+                    //Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    Log.d("prueba", "completada la subida");
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    Log.d("prueba", "fallo subida");
+                }
+            });
+}
+```
+En este caso se selecciona una imagen del dispositivo a través de su URI. Teniendo esa referencia, el método `putFile()` guarda el fichero en Firebase con la ruta y nombre especifiados en `StorageReference`. En caso de no existir la ruta de destino `images/` se creará.
+
+## Descargar imagen
+
+Cuando consultemos a Firebase Storage por una imagen nos proporcionará una URI que nos llevará a la imagen seleccionada. Esa URI la podremos utilizar para, por ejemplo, cargar una imagen en un `ImageView`, aunque para hacerlo debemos de utilizar una librería externa. En este caso se utiliza `Picasso`:
+
+```java
+implementation 'com.squareup.picasso:picasso:2.71828'
+```
+
+Y para descargar:
+
+```java
+public void download(View v) throws IOException {
+    final StorageReference riversRef = mStorageRef.child("images/rivers.jpg");
+
+    final File localFile = File.createTempFile("images", "jpg");
+    riversRef.getFile(localFile)
+            .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    // Successfully downloaded data to local file
+                    riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            ImageView imageView = findViewById(R.id.imageView);
+
+                            Log.d("prueba", "onSuccess: uri= "+ uri.toString());
+                            Picasso.get().load(uri.toString()).into(imageView);
+                        }
+                    });
+                    Log.d("prueba", "completada la descarga " );
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception exception) {
+            // Handle failed download
+            Log.d("prueba", "fallo descarga");
+        }
+    });
+}
+```

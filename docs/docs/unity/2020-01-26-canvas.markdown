@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "Canvas"
+date:   2020-01-26 14:30:00 +0200
+categories: unity
+order: 1
+parent: Unity
+---
+
+[Documentación](https://docs.unity3d.com/es/2019.3/Manual/UICanvas.html){: .btn .btn-green }
+
+# Canvas
+
+A través del canvas de Unity podremos crear varios elementos para que interaccione el usuario como botones, sliders, checkboxs, cajas de texto, etc. Es posible añadir un canvas en una escena del juego, pero esto se hace normalmente para añadir controles u otros elementos que se mostrarán durante la partida. Empezaremos por un menú simple, por lo que deberemos crear una escena llamada menú y añadir un componente cavas. *Click derecho en la jerarquía de objetos > UI > Canvas*.
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_canvas/captura1.png)
+{:refdef}
+
+Se puede añadir cualquier elemento de la GUI simplemente haciendo click derecho en la jerarquía de objetos dentro del canvas:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-TobfKcKzhs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-GWjA6dixV4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Se recomienda utilizar `TextMeshPro` ya que mejora en mucho los elementos de la GUI por defecto de Unity.
+
+* <https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126>

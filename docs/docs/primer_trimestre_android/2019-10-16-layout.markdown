@@ -1,0 +1,49 @@
+---
+layout: post
+title:  "Layouts"
+date:   2019-10-16 14:30:00 +0200
+categories: primer_trimestre
+order: 1
+parent: Primer trimestre Android
+---
+
+# Layouts
+
+En la asignatura utilizaremos los *layouts* que no estén *legacy* en Android Studio (los que estén en este apartado se consideran anticuados, siendo posible el uso de opciones mejores). 
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/img_post_layout/captura1.jpg)
+{: refdef}
+
+En realidad utilizaremos únicamente 4 *layouts*:
+* *ConstraintLayout*: El creado por defecto en una actividad y el que más hemos utilizado hasta ahora.
+* *LinearLayout*: Tanto horizontal como vertical, únicamente cambia el atributo correspondiente.
+* *FrameLayout*: Contiene solo un elemento.
+* *TableLayout*: Para organizar los elementos en filas y columnas. Por ejemplo:
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/img_post_layout/captura2.jpg)
+{: refdef}
+
+Observa en la imagen que, aunque en realidad *TableLayout* organiza los elementos en filas y columnas, podemos hacer que ocupen más de un hueco (en horizontal), o que se estiren en todo el espacio disponible. Para ello pondemos utilizar los siguientes atributos:
+
+* *layout_span*: Permite ocupar más de una columna a un elemento.
+* *layout_weight*: Si el valor es distinto del valor por defecto, permite "estirar" el componente dependiendo del peso dentro del layout, el cual corresponde tanto al valor propio como al de los demás elementos con el que comparte el espacio.
+* *gravity* en el layout o *layout_gravity* en una vista: Permite cambiar el punto de referencia desde el que se empiezan a ordenar los elementos dentro del *layout*, siendo por defecto arriba e izquierda. Este atributo se puede cambiar desde el *layout* para cambiar todos los elementos dentro de él o desde cada vista para cambiar el comportamiento únicamente de esa elemento. Este efecto es más apreciable en, por ejemplo, un *LinearLayout* en el que sobre espacio y los componentes puedan empezar a ordenarse desde otro lado. Ejemplo:
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/img_post_layout/captura3.jpg)
+{: refdef}
+
+Este es el comportamiento al modificar estos atributos en *TableLayout*, siendo también válidos en otros *layouts* como se ha podido comprobar. Ten en cuenta que un *layout* puede contener a su vez otros *layouts*, por lo que el uso de estos atributos tendrán un comportamiento parecido con las diferentes vistas dentro del *layout*, como por ejemplo botones, campos de texto, editText, etc.
+
+Durante el transcurso de la asignatura los iremos utilizando. Por ahora, intenta añadirlos a tu proyecto y comprobar cómo se ordenan las vistas en su interior, cambiando atributos e intentado que se ajusten a los diferentes tamaños.
+
+Algunos links útiles:
+
+* <https://developer.android.com/reference/android/widget/FrameLayout>
+* <https://developer.android.com/guide/topics/ui/layout/grid>
+* <https://developer.android.com/guide/topics/ui/layout/linear>
+
+
+

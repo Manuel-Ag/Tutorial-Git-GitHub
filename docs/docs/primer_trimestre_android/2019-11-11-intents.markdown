@@ -1,0 +1,212 @@
+---
+layout: post
+title:  "Intents y filtros de intents"
+date:   2019-11-11 14:30:00 +0200
+categories: primer_trimestre
+order: 1
+parent: Primer trimestre Android
+---
+
+# Intents y filtros de intents
+
+**Antes de nada, visita los siguientes enlaces:**
+* Intents y filtros de intents: <https://developer.android.com/guide/components/intents-filters.html?hl=es>
+* Documentación de la clase Intent: <https://developer.android.com/reference/android/content/Intent>
+
+
+# Intents
+
+El primer proyecto que comentaremos es el relativo a envío de intents, tanto implícitos como explícitos. Proyecto: <https://github.com/Manuel-Ag/PMD_19-20/tree/master/Intents>. 
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/img_post_intents/captura1.jpg)
+{: refdef}
+
+En este proyecto dividiremos los ejemplos en diferentes botones:
+
+* Botón `Intent explícito`: El primer intent lo utilizamos únicamente para lanzar otra actividad, sin ninguna otra funcionalidad.
+{% highlight java %}
+    public void botonIntentExplicito(View v) {
+        // Creamos el intent
+        Intent intent = new Intent(this, Actividad2.class);
+        // Lanzamos la segunda actividad
+        startActivity(intent);
+    }
+{% endhighlight %}
+
+Creamos el intent explícito y se envía el intent cuando se llama al método `startActivity()`. Este método enviará el intent a la actividad definida.
+
+* Botón `Intent con putExtra()`: Podemos enviar información adjunta al intent. Simplemente debemos especificar un identificador al campo y la información.
+{% highlight java %}
+    public void botonIntentExplicitoPutExtra(View v) {
+        // Creamos el intent
+        Intent intent = new Intent(this, Actividad2.class);
+        // Llamamos a putExtra()
+        intent.putExtra("tag1", "Contenido intent(1)");
+        intent.putExtra("tag2", "Contenido intent(2)");
+        // Lanzamos la segunda actividad
+        startActivity(intent);
+    }
+{% endhighlight %}
+
+Para recuperar esa información en la actividad receptora, se recupera el intent enviado y se hace referencia a sus identificadores con el método `get()` correspondiente:
+{% highlight java %}
+        // Recupero el intent que ha lanzado esta actividad
+        Intent intent = getIntent();
+        // Y su contenido
+        String tag1 = intent.getStringExtra("tag1");
+        String tag2 = intent.getStringExtra("tag2");
+{% endhighlight %}
+
+* Botón `Intent con respuesta`: Cuando abrimos una actividad y esperamos una respuesta de esta, debemos de implementar algunos métodos más. Primero, el método que lanza el intent cambia a `startActivityForResult()`. Además, en este caso `OPCION1` identifica al intent, lo cuál lo comprobaremos en la respuesta.
+{% highlight java %}
+        Intent intent = new Intent(this, Actividad2.class);
+        startActivityForResult(intent, OPCION1);
+{% endhighlight %}
+
+En la segunda actividad creada, se debe responder con:
+{% highlight java %}
+    public void botonAceptar(View v) {
+        Intent intent = new Intent();
+        intent.putExtra("tag3", "Hola");
+        // Enviamos el intent al MainActivity.class y cerramos la actividad actual
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+{% endhighlight %}
+
+El método `setResult()` envía el intent y el método `finish()` finaliza la actividad actual. `setResult()` tiene otro parámetro que indica si el código de respuesta es `RESULT_OK` u otro, el cuál podremos conocer en la primera actividad.
+
+Para recuperar el intent desde la primera actividad deberemos de implementar:
+{% highlight java %}
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case OPCION1:
+                if (resultCode == RESULT_OK) {
+                    Toast.makeText(this, "Intent Opción 1: "
+                            + data.getStringExtra("tag3"), Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(this, "Usuario ha cancelado", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+{% endhighlight %}
+
+Observa como tenemos 3 parámetros: `requestCode`, `resultCode` y `data`. Corresponden respectivamente a `OPCION1`, `RESULT_OK` y al intent enviado en respuesta por la segunda actividad. En el ejemplo anterior se puede observar como podemos recuperar el contenido del intent, identificarlo y conocer el código de respuesta.
+
+* Botón `Intent implícito HTTP`: Los intent implícitos por el contrario son más fáciles de implementar. Por ejemplo, si queremos visitar una aplicación web únicamente es necesario definir el intent implícito y enviarlo.
+{% highlight java %}
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        //Parseamos a tipo Uri (la dirección debe de empezar por http:
+        intent.setData(Uri.parse(editText.getText().toString()));
+        startActivity(intent);
+{% endhighlight %}
+
+Es importante definir la acción y los datos del intent para que se nos dé a elegir el tipo de aplicación correcto. La cadena de dirección (URI) deberá de comenzar por *http:*. Esto es importante debido a que indica el tipo de contenido de ese intent.
+
+El uso es parecido al del intent explícito, pero sin definir a quién va dirigido. Será el propio sistema operativo el que le dé a elegir al usuario la opción aplicación preferida. 
+
+* Botón `GPS`: Otro ejemplo utilizando maps.
+{% highlight java %}
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+
+        // Según lo definido en setData se abrirá una aplicación u otra
+        intent.setData(Uri.parse("geo:41.6460036,-0.8884131"));
+        startActivity(intent);
+{% endhighlight %}
+
+En este caso, la URI definida por `setData()` empezará por *geo:*.
+
+* Botón `Email`: Y por último, otro ejemplo con aplicaciones para enviar emails. Se abrirá un cliente de email con un email ya creado con los datos definidos en el intent, listo para ser enviado.
+{% highlight java %}
+        Intent intent = new Intent();
+        intent.setType("*/*");
+        intent.setData(Uri.parse("mailto:"));
+        intent.setAction(Intent.ACTION_SENDTO);
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"direcasd@gads.com", "adsf@gfas.com"});
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Asunto");
+        intent.putExtra(Intent.EXTRA_STREAM, "Cuerpo");
+
+        startActivity(intent);
+{% endhighlight %}
+Hay que tener en cuenta que para enviar emails desde el dispositivo se debe de haber configurado una cuenta de Gmail previamente.
+
+
+Cada intent, según la especificación, debe de construirse con unas características. Para ello existen guías que muestran los más comunes: <https://developer.android.com/guide/components/intents-common?hl=es-419>
+
+
+# Filtros de intents
+
+Los filtros de intents ponen a nuestra aplicación en el lado contrario; como los receptores del intent, siempre que se defina en el componente un filtro de intent compatible que se ajuste a los parámetros del intent enviado. Será el usuario al que se le de la opción de seleccionar nuestra aplicación entre una lista. En nuestro ejemplo, haremos que la aplicación de fotos comparta una imagen y sea nuestra aplicación la que capture el intent y muestre la imagen.
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/img_post_intents/captura2.png)
+{: refdef}
+
+Pasos a seguir en el proyecto <https://github.com/Manuel-Ag/PMD_19-20/tree/master/Intentfilter> :
+
+1. Instala la aplicación en el dipositivo y ciérrala.
+2. Realiza una foto con la aplicación de fotos del dispositivo.
+3. Abre una aplicación que permita visualizar fotos y compartirlas. En nuestro ejemplo utilizaremos la aplicación *fotos*.
+4. Pulsa en el incono de compartir, a continuación selecciona nuestra aplicación. 
+
+Para implementar un filtro de intent, simplemente debemos de definir en el fichero manifiesto el filtro en un componente:
+{% highlight xml %}
+        <activity android:name=".MainActivity">
+	    ...
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+ 	    ...
+        </activity>
+{% endhighlight %}
+
+Un mismo componente puede tener más de un filtro. En este ejemplo nos centraremos en el de imágenes.
+
+Los filtros pueden tener diferentes acciones, datos o tipos de datos. Para ver la construcción de filtros más comunes puedes visitar <https://developer.android.com/guide/components/intents-common?hl=es-419> y ver varios ejemplos. Entre la lista se puede encontrar el de nuestra aplicación.
+
+De esta forma, nuestra aplicación recibirá ese intent con los datos definidos. Será nuestra responsabilidad capturarlo:
+{% highlight java %}
+        Intent intent = getIntent();
+        // Acción
+        String action = intent.getAction();
+        // Tipo mime
+        String type = intent.getType();
+
+        Log.d("prueba", "Action: " + action + " Tipo: " + type);
+
+        // Comprobamos la acción y que le tipo no es nulo
+        if (Intent.ACTION_SEND.equals(action) && type != null) {
+            // En caso de ser texto plano (hay que definirlo en el Manifest.xml)
+            if ("text/plain".equals(type)) {
+
+            }
+            // En caso de ser imagen
+            else if (type.startsWith("image/")) {
+                ImageView imageView = findViewById(R.id.imageView);
+                // Pasamos la dirección de la imagen
+                Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+                imageView.setImageURI(imageUri);
+            }
+        }
+{% endhighlight %}
+
+Una vez recuperado el intent que lanzó nuestra actividad, podemos conocer la acción, el tipo, los datos, etc., para a continuación manejarlo como más convenga. En este caso, nos viene una URI con la dirección de una imagen, así que la usaremos para localizar la imágen y mostrarla en nuestra aplicación.
+
+
+
+**Ver también:**
+* Tipos mime: <https://developer.mozilla.org/es/docs/Web/HTTP/Basics_of_HTTP/MIME_types>
+
+
+
+
+
+
+

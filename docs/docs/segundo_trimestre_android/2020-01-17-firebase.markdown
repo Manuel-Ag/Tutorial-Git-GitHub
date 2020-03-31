@@ -1,0 +1,37 @@
+---
+layout: post
+title:  "Firebase"
+date:   2020-01-17 14:30:00 +0200
+categories: segundo_trimestre
+order: 1
+parent: Segundo trimestre Android
+---
+
+# Firebase
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iosNuIdQoy8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+En clase se usarán los siguientes componentes:
+
+![Android]({{ site.baseurl }}/assets/img_post_firebase/captura2.png) ![Android]({{ site.baseurl }}/assets/img_post_firebase/captura1.png) ![Android]({{ site.baseurl }}/assets/img_post_firebase/captura3.png)
+
+
+## Configuración inicial
+
+Necesitas una cuenta de Gmail para darte de alta en Firebase:
+
+* <https://firebase.google.com/>
+
+Una vez activada la cuenta, creamos un nuevo proyecto:
+
+![Android]({{ site.baseurl }}/assets/img_post_firebase/captura4.png)
+
+Cuando terminen los pasos de configuración deberemos de añadir nuestra aplicación. Selecciona `Configuración del proyecto`:
+
+![Android]({{ site.baseurl }}/assets/img_post_firebase/captura5.png)
+
+Y selecciona Android:
+
+![Android]({{ site.baseurl }}/assets/img_post_firebase/captura6.png)
+
+Aparecerá una guía para añadir la aplicación al proyecto. Una vez finalizados los pasos ya podremos conectarnos desde la aplicación.

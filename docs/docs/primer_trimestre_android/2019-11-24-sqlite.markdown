@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "SQLite"
+date:   2019-11-24 14:30:00 +0200
+categories: primer_trimestre
+order: 1
+parent: Primer trimestre Android
+---
+
+# SQLite
+
+* Proyecto GitHub: <https://github.com/Manuel-Ag/PMD_19-20/tree/master/SQLite>
+
+## Ejemplo básico
+
+En este ejemplo vamos a ver como podemos conectarnos a una base de datos y lanzar algunas consultas básicas:
+
+1\. Conexión o creación de la base de datos.
+
+{% highlight java %}
+public void conectarCrearBaseDatos(View v) {
+        // Crear o conectarse a una base de datos existente
+        db = openOrCreateDatabase("MiDB", Context.MODE_PRIVATE, null);
+    }
+{% endhighlight %}
+
+2\. Primera consulta sobre esa conexión. Creación de una tabla. 
+{% highlight java %}
+    public void crearTabla(View v) {
+        // Creamos la base de datos si no existe
+        db.execSQL("CREATE TABLE IF NOT EXISTS miTabla(atributo1 VARCHAR, atributo2 VARCHAR)");
+    }
+{% endhighlight %}
+
+Simplemente debemos llamar a `execSQL()` para lanzar una consulta sobre la base de datos. 
+	
+3\. Inserción de datos.
+{% highlight java %}
+    public void insertarDatos(View v) {
+        // Lanzamos la consulta de insertado
+        db.execSQL("INSERT INTO miTabla VALUES ('Campo1', 'Campo2')");
+    }
+{% endhighlight %}
+
+4\. Y consulta de los datos insertados.
+{% highlight java %}
+    public void listar(View v) {
+        // rawQuery lanza la consulta SQL y devuelve un cursor al resultado
+        Cursor c = db.rawQuery("SELECT * FROM miTabla", null);
+        if (c.getCount() == 0) {
+            Log.i("Resultado", "No hay registros");
+        }
+        else {
+            while(c.moveToNext())
+                Log.i("Resultado", c.getPosition() + ". " + c.getString(0) + ", " +  c.getString(1));
+        }
+
+    }
+{% endhighlight %}
+
+En este último paso utilizamos el método `rawQuery()`, el cual devolverá un cursor con los campos de la consulta SQL `SELECT`. Simplemente recorreremos el cursor y recuperaremos los campos según la posición, empezando por la posición 0.

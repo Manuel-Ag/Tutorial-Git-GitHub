@@ -1,0 +1,46 @@
+---
+layout: post
+title:  "Fichero Manifest"
+date:   2019-10-2 14:30:00 +0200
+categories: primer_trimestre
+order: 1
+parent: Primer trimestre Android
+---
+
+# Fichero Manifest
+
+El fichero Manifest es uno de los ficheros más importantes en un proyecto con Android Studio.
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/manifesto_imagenes/manifiesto3.jpg)
+{: refdef}
+
+
+Si abrimos el fichero podemos encontrar la siguiente información:
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/manifesto_imagenes/manifiesto2.jpg)
+{: refdef}
+
+
+Aquí podremos cambiar varias cosas de nuestra aplicación, como por ejemplo:
+
+* El icono de la aplicación (en el emulador que utilizamos necesitaremos cambiar el redondo, aunque se deben cambiar ambos)
+* La etiqueta del programa
+* El estilo de la aplicación
+* Permisos requeridos
+* Y, sobre todo, los componentes que utilizaremos en nuestra aplicación (actividades, sevicios, etc...) los cuales deberán ser declarados en este fichero si deseamos que funcione el programa correctamente
+
+Por otro lado, si pulsamos en Merged Manifest en la pestaña inferior izquierda:
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/manifesto_imagenes/manifiesto1.jpg)
+{: refdef}
+
+Tendremos más opciones para configurar. Simplemente deberemos comprobar el color de la línea e ir al fichero correspondiente para modificar el campo (a los ficheros se acceden arriba a la derecha según el código de color). Es una forma rápida de cambiar por ejemplo el API mínima para la que se va a desarrollar.
+
+Para más información: [https://github.com/Manuel-Ag/PMD_19-20/tree/master/Primera_aplicacion]
+
+[https://github.com/Manuel-Ag/PMD_19-20/tree/master/Primera_aplicacion]: https://github.com/Manuel-Ag/PMD_19-20/tree/master/Primera_aplicacion
+
+

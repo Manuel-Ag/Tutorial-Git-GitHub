@@ -1,0 +1,95 @@
+---
+layout: post
+title:  "Exportar a Android"
+date:   2020-01-29 14:30:00 +0200
+categories: unity
+order: 1
+parent: Unity
+---
+
+# Preparar el juego para ejecutarlo en Android
+
+Ahora que tenemos un juego con cierta funcionalidad, se probará a ejecutarlo en un dispositivo móvil.
+
+## Controles - Joystick
+
+No se dispone de teclado en un dispositivo móvil, por lo que se deberán añadir otro tipo de controles mejor adaptados a este entorno. Existen multitud de recursos gratuitos en la Unity Store que permiten adaptar los controles a un dispositivo Android. Se utilizará el siguiente:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_android/captura3.png)
+{:refdef}
+
+* <https://assetstore.unity.com/packages/tools/input-management/joystick-pack-107631>
+
+En este paquete tenemos algunos prefabs listos para utilizarse.
+
+Primeramente, se crea un objeto de tipo *UI > Canvas*. Nos permitirá crear la interface de usuario. Con este objeto creado arrastra el prefab `Fixed Joystick` al canvas:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_android/captura4.png)
+{:refdef}
+
+No borres el nuevo objeto creado. Es necesario para capturar los eventos del canvas.
+
+Debemos acceder a ese nuevo elemento desde nuestro script del **personaje**. Desde el script capturaremos los valores:
+
+```csharp
+// Referencia al joystick
+public FixedJoystick fixedJoystick;
+// Mostramos los valores por la terminal
+Debug.Log(fixedJoystick.Horizontal + " " + fixedJoystick.Vertical);
+```
+
+Observa como la variable es pública y de tipo `FixedJoystick`. Esto significa que tendremos que arrastrar el objeto al campo del script:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_android/gif1.gif)
+{:refdef}
+
+## Opción B, otro Joystick
+
+* <https://assetstore.unity.com/packages/tools/input-management/mobile-touch-floating-joysticks-with-options-58759>
+
+Arrastra el prefab dentro de *Assets > Touch Controller Kit Lite > Prefabs > Joystick* a la escena. Se creará automáticamente el canvas.
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_android/captura6.png)
+{:refdef}
+
+```csharp
+// Variable global
+[SerializeField] private JoystickMovement joystick;
+
+void update()
+{
+  Debug.Log(joystick.HorizontalInput());
+  Debug.Log(joystick.VerticalInput());
+}
+```
+
+Simplemente arrastra el objeto Joystick hasta el campo público del script.
+
+## Controles - Botón
+
+Añadir un botón requiere de menos pasos. Simplemente haciendo click derecho en el objeto *canvas > UI > Button*, se añade una acción y se hace referencia a un objeto con un script y se selecciona el método deseado de ese script.
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_android/gif2.gif)
+{:refdef}
+
+
+## Generación de la .apk
+
+Unity es un motor multiplataforma, por lo que es posible exportar el juego a diferentes entornos en pocos pasos.
+
+* Abre la ventana *File > Build Settings*. Cambia la plataforma a Android. La opción estará disponible únicamente si en la instalación se activó la opción de Android SDK. Tardará unos minutos...
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_android/captura5.png)
+{:refdef}
+
+Se puede apreciar como se ha añadido una escena por defecto. Es muy importante que añadas todas las escenas que utilizará el juego. El juego iniciará por la escena número 0.
+
+* En `Player Settings` se pueden configurar las opciones anteriormente conocidas de Android.
+
+* `Build`.

@@ -1,0 +1,119 @@
+---
+layout: post
+title:  "Permisos"
+date:   2019-11-13 14:30:00 +0200
+categories: primer_trimestre
+order: 1
+parent: Primer trimestre Android
+---
+
+# Permisos
+
+**Antes de nada, visita los siguientes enlaces:**
+
+* Guía de permisos: <https://developer.android.com/training/permissions/requesting?hl=es-419>
+* Listado de permisos: <https://developer.android.com/guide/topics/security/permissions.html?hl=es-419>
+* Buenas prácticas: <https://developer.android.com/training/permissions/usage-notes?hl=es-419>
+
+
+## Cómo pedir permisos
+
+La forma más fácil es utilizar la que se nos propone en la documentación:
+
+1\. Declararlos en el fichero manifiesto.
+
+{% highlight xml %}
+    ...
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    ...
+{% endhighlight %}
+
+2\. Pedirlos en tiempo de ejecución (obligatorio a partir del API 23).
+
+{% highlight java %}
+    // Here, thisActivity is the current activity
+    if (ContextCompat.checkSelfPermission(thisActivity,
+            Manifest.permission.READ_CONTACTS)
+            != PackageManager.PERMISSION_GRANTED) {
+
+        // Permission is not granted
+        // Should we show an explanation?
+        if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
+                Manifest.permission.READ_CONTACTS)) {
+            // Show an explanation to the user *asynchronously* -- don't block
+            // this thread waiting for the user's response! After the user
+            // sees the explanation, try again to request the permission.
+        } else {
+            // No explanation needed; request the permission
+            ActivityCompat.requestPermissions(thisActivity,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+
+            // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+            // app-defined int constant. The callback method gets the
+            // result of the request.
+        }
+    } else {
+        // Permission has already been granted
+    }
+{% endhighlight %}
+
+
+## Código paso a paso
+
+En el ejemplo anterior se siguen los siguientes pasos:
+
+* Comprueba si se tienen los permisos
+
+{% highlight java %}
+if (ContextCompat.checkSelfPermission(thisActivity,
+            Manifest.permission.READ_CONTACTS)
+            != PackageManager.PERMISSION_GRANTED)
+{% endhighlight %}
+
+* En caso de no tenerlos, tenemos otra bifurcación
+
+{% highlight java %}
+        if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
+                Manifest.permission.READ_CONTACTS)) {
+		// Vacío
+        } else {
+            ActivityCompat.requestPermissions(thisActivity,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+{% endhighlight %}
+
+El método `shouldShowRequestPermissionRationale()` sigue el siguiente esquema:
+
+{:refdef: style="text-align: center;"}
+![Android]({{ site.baseurl }}/assets/img_post_permisos/imagen1.png)
+{: refdef}
+
+Por lo que podremos saber si es la primera vez que al usuario se le pide el permiso o no. En caso de insistir al usuario en un permiso, podremos cambiar la funcionalidad al pedir ese permiso, como por ejemplo cambiar la forma de pedirlo, mostrar información adicional en un diálogo, pedir que el usuario lo active desde los ajustes, etc.
+
+* Cuando se acepta o deniega permisos se llamará al siguiente método:
+
+{% highlight java %}
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_PERMISSIONS_REQUEST_READ_CONTACTS)
+            Log.i("Prueba", "Permisos: " + Arrays.toString(permissions) +
+                    " Estado:" + Arrays.toString(grantResults));
+    }
+{% endhighlight %}
+
+De esta forma, podremos saber una vez se ha mostrado al usuario el cuadro de conceder permisos o no, las elecciones que ha tomado para cada permiso (llegan como parámetro en los arrays).
+
+Esto, entre otras cosas, nos facilita saber si el usuario ha seleccionado la opción: `no mostrar otra vez` cuando se le pide un permiso. Puedes ver un ejemplo de esta implementación en el siguiente enlace: <https://stackoverflow.com/questions/30719047/android-m-check-runtime-permission-how-to-determine-if-the-user-checked-nev>
+
+
+
+* **GitHub:** <https://github.com/Manuel-Ag/PMD_19-20/tree/master/Permisos>
+
+
+
+
+
+
+
