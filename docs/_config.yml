@@ -13,9 +13,9 @@
 # you will see them accessed via {{ site.title }}, {{ site.github_repo }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: PMD_19-20
+title: Tutorial-Git-GitHub
 description: Programación multimedia y dispositivos móviles
-baseurl: "/PMD_19-20" # the subpath of your site, e.g. /blog
+baseurl: "/Tutorial-Git-GitHub" # the subpath of your site, e.g. /blog
 #baseurl: ""
 url: "https://manuel-ag.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -37,7 +37,7 @@ heading_anchors: true
 # Aux links for the upper right navigation
 aux_links:
   "GitHub":
-    - "https://github.com/Manuel-Ag/PMD_19-20"
+    - "https://github.com/Manuel-Ag/Tutorial-Git-GitHub"
 
 # Footer content appears at the bottom of every page's main content
 footer_content: ""
