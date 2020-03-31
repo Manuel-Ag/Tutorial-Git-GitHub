@@ -2,9 +2,9 @@
 layout: post
 title:  "Introducción Git"
 date:   2020-02-11 14:30:00 +0200
-categories: unity
+categories: git
 order: 1
-parent: Unity
+parent: git
 ---
 
 {:refdef: style="text-align: center;"}
