@@ -39,7 +39,7 @@ Una vez descargado, instalar con todas las opciones por defecto:
 ![Imagen]({{ site.baseurl }}/assets/img_post_instalacion_git/img5.png)
 {:refdef}
 
-## Una vez finalizado, en el menú contextual deberá de aparecer las siguientes dos opciones
+Una vez finalizado, en el menú contextual deberá de aparecer las siguientes dos opciones
 
 {:refdef: style="text-align: center;"}
 ![Imagen]({{ site.baseurl }}/assets/img_post_instalacion_git/img6.png)
