@@ -13,7 +13,18 @@ parent: GitHub
 
 # GitHub
 
-GitHub es una plataforma de desarrollo que permite alojar proyectos utilizando un control de versiones, siendo el más ampliamente utilizado Git.
+GitHub es una plataforma de desarrollo que permite alojar proyectos utilizando un control de versiones, siendo el más ampliamente utilizado Git. Los proyectos se almacenan en la nube, lo que permite trabajar de forma simultánea en el mismo proyecto con otros desarrolladores o, incluso, crear un proyecto abierto que permita a todo el mundo proponer nuevas características o cambios.
+
+Un ejemplo de flujo de trabajo que se podría dar:
+
+* Desarrollador realiza uno o varios cambios en su repositorio local de Git (Commits). Puede realizar los commits que estime oportuno. En estos commits se guarda el estado del proyecto en ese momento.
+* Decide que quiere subir todos sus cambios a GitHub, por lo que realiza un Push. Todos los commits guardados en local se guardan también en la nube.
+* Otro desarrollador, con una versión más antigua del proyecto, desea actualizar su proyecto a la última versión que hay en GitHub, por lo que realiza un Pull. Ahora tiene acceso a todos los commits del primer desarrollador.
+* Realiza sus propios commits y los sube otra vez a GitHub mediante un Push.
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_introduccion_github/img7.png)
+{:refdef}
 
 # Crear cuenta
 
