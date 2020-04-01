@@ -7,13 +7,12 @@ order: 1
 parent: Git
 ---
 
-# INSTALACIÓN DEBIAN/UBUNTU
+# Instalación Debian/Ubuntu
 
-Instalación en Debian/Ubuntu:
 ```console
 $ apt-get install git
 ```
 
-# INSTALACIÓN WINDOWS
+# Instalación Windows
 
 [Descarga Windows](https://git-scm.com/download/win){: .btn .btn-green }

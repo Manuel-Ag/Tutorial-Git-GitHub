@@ -11,13 +11,13 @@ parent: GitHub
 ![Imagen]({{ site.baseurl }}/assets/img_post_introduccion_github/img1.png)
 {:refdef}
 
-# GITHUB
+# GitHub
 
 GitHub es una plataforma de desarrollo que permite alojar proyectos utilizando un control de versiones, siendo el más ampliamente utilizado Git.
 
-# CREAR CUENTA
+# Crear cuenta
 
-[GitHub](https://github.com/){: .btn .btn-green }
+[Enclace GitHub](https://github.com/){: .btn .btn-green }
 
 ## Registro:
 
@@ -54,49 +54,27 @@ Contenido de .gitignore para un proyecto java:
 
 ```
 # Compiled class file
-
 *.class
 
-
-
 # Log file
-
 *.log
 
-
-
 # BlueJ files
-
 *.ctxt
 
-
-
 # Mobile Tools for Java (J2ME)
-
 .mtj.tmp/
 
-
-
 # Package Files #
-
 *.jar
-
 *.war
-
 *.nar
-
 *.ear
-
 *.zip
-
 *.tar.gz
-
 *.rar
 
-
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-
 hs_err_pid*
 ```
 
