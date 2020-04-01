@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Git Desktop"
+date:   2020-03-27 14:30:00 +0200
+categories: GitHub
+order: 1
+parent: Git y GitHub
+---
+
+# Git Desktop
+
+Existen multitud de herramientas gráficas para no tener que lanzar comandos. Git Desktop es solo una de ellas.
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_git_desktop/img1.png)
+{:refdef}
+
+Las opciones y el funcionamiento es el mismo que el visto hasta ahora, simplemente que con una usabilidad mayor:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_git_desktop/img2.png)
+{:refdef}
+
+Clona tu repositorio de GitHub en local, realiza cambios y haz un commit y push. En este caso vemos un comando nuevo llamado Fetch, el cual también obviamente existe en la línea de comandos. En este caso nos sirve para saber si el repositorio remoto se ha modificado.
