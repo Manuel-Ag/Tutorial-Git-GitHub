@@ -1,0 +1,18 @@
+---
+layout: post
+title:  "Introducción Git"
+date:   2020-03-21 14:30:00 +0200
+categories: GitHub
+order: 1
+parent: GitHub
+---
+
+# Usuarios
+
+Para que varios desarrolladores trabajen al mismo tiempo en un proyecto privado deben de tener ambos acceso al mismo. Para ello, en GitHub accede a un repositorio. En la pestaña Settings:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_usuarios/img1.png)
+{:refdef}
+
+Y añade con *Invite Collaborator*.
