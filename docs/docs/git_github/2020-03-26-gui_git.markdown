@@ -12,13 +12,13 @@ parent: Git y GitHub
 Git también trae por defecto una interface gráfica muy simple que nos servirá para añadir ficheros nuevos, realizar commits y hacer push al repositorio remoto. Para ello, con el botón derecho en un repositorio ya creado, pulsamos en Git GUI Here:
 
 {:refdef: style="text-align: center;"}
-![Imagen]({{ site.baseurl }}/assets/img_post_gui/img1.png)
+![Imagen]({{ site.baseurl }}/assets/img_post_gui_git/img1.png)
 {:refdef}
 
 Si lo hemos hecho en una ruta con un proyecto existente veremos la siguiente ventana:
 
 {:refdef: style="text-align: center;"}
-![Imagen]({{ site.baseurl }}/assets/img_post_gui/img2.png)
+![Imagen]({{ site.baseurl }}/assets/img_post_gui_git/img2.png)
 {:refdef}
 
 La clave aquí es pulsar los botones en orden, de arriba a abajo, para hacer push contra el repositorio remoto configurado:
@@ -30,11 +30,11 @@ La clave aquí es pulsar los botones en orden, de arriba a abajo, para hacer pus
 Todo esto es equivalente a hacerlo mediante comandos. Una vez terminado se mostrará el siguente mensaje:
 
 {:refdef: style="text-align: center;"}
-![Imagen]({{ site.baseurl }}/assets/img_post_gui/img3.png)
+![Imagen]({{ site.baseurl }}/assets/img_post_gui_git/img3.png)
 {:refdef}
 
 La configuración de usuario e email también se podría haber configurado en Edit > Options:
 
 {:refdef: style="text-align: center;"}
-![Imagen]({{ site.baseurl }}/assets/img_post_gui/img4.png)
+![Imagen]({{ site.baseurl }}/assets/img_post_gui_git/img4.png)
 {:refdef}
