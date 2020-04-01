@@ -93,3 +93,33 @@ Y, ¿qué ocurrirá si otra persona cambia el código que hay en la nube?. El cl
 ```console
 $ git pull
 ```
+
+# Segundo ejemplo
+
+En vez de clonar el repositorio como en el ejemplo anterior, se puede crear un repositorio local y conectarlo con el repositorio remoto. Para ello, crea otro repositorio:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img7.png)
+{:refdef}
+
+Es *muy importante* que para crear el repositorio de esta forma no se le añada un .gitignore o un README. En caso contrario dará error.
+
+Una buena guía para esto es la oficial de GitHub: <https://help.github.com/en/enterprise/2.17/user/github/importing-your-projects-to-github/adding-an-existing-project-to-github-using-the-command-line>
+
+Simplemente deberemos de seguir la guía que se nos muestra:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img8.png)
+{:refdef}
+
+En la ruta de un nuevo proyecto **sin repositorio** hacemos click derecho y Git Bash Here. Lanzamos el comando:
+```console
+$ git init
+```
+Observa como se ha creado la carpeta oculta .git. Ya tenemos un repositorio. Únicamente deberemos lanzar los comandos de git add . y git commit descritos anteriormente. Lo diferente viene cuando queremos subir este código a GitHub. Para ello se deberá especificar cual es el proyecto donde guardar este código:
+```console
+$ git remote add origin *URL*
+$ git remote -v
+$ git push origin master
+```
+Donde URL es la URL del repositorio (recuerda el ejemplo anterior).
