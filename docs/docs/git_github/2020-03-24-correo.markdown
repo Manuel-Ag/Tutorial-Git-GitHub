@@ -1,0 +1,24 @@
+---
+layout: post
+title:  "Configuración del usuario y correo"
+date:   2020-03-24 14:30:00 +0200
+categories: GitHub
+order: 1
+parent: Git y GitHub
+---
+
+# Especifica usuario y email
+
+Para guardar los cambios en un repositorio, es necesario identificar quién los ha realizado. En estos cambios irán indexados un nombre de usuario y un email. Hay que tener cuidado porque si se configura incorrectamente el repositorio, el email podría verse públicamente. Lo deseable es que los cambios identifiquen qué usuario de GitHub ha realizado los cambios en el proyecto pero que su correo sea privado independientemente de la visibilidad del proyecto. Para ello en GitHub accede a:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_correo/img1.png)
+{:refdef}
+
+Y en la pestaña emails debe de estar habilitado:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_correo/img2.png)
+{:refdef}
+
+Con esta opción habilitada es seguro poner nuestro email en git. Aún así, observa que nos muestra el email que se mostrará en los commits. Esto nos servirá para identificar quien realiza los cambios.

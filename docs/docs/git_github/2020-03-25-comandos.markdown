@@ -7,4 +7,89 @@ order: 1
 parent: Git y GitHub
 ---
 
-#asdf
+# Utilizando comandos
+
+Una vez instalado Git, creada la cuenta en GitHub y creado nuestro primer repositorio Java, podremos subir nuestro código al repositorio de muchas formas. Los entornos de programación suelen tener integrado Git (por ejemplo Eclipse) para utilizarlo mediante interface gráfica, pero realizar este trabajo mediante comandos también tiene ventajas. Es útil ya que estos comandos son comunes a todas las plataformas y permiten crear scripts para diferentes acciones, como por ejemplo actualizar muchos repositorios a la vez o comprobar cambios remotos periódicamente.
+
+# Primer ejemplo
+
+Entramos en la página de nuestro repositorio:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img1.png)
+{:refdef}
+
+El botón verde de la derecha nos permite descargar el proyecto como un fichero comprimido o clonar el proyecto. Clonar el proyecto significa que se va a descargar mediante un comando y nos permitirá realizar cualquier acción, tal como push, pull, etc. Vamos a clonarlo. Primero copia el enlace del proyecto al portapapeles:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img2.png)
+{:refdef}
+
+Después, en la carpeta que quieras clonar el proyecto, botón derecho y Git Bash Here. Esto abrirá una terminal Git Bash en la ruta actual y nos permitirá lanzar cualquier comando de git.
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img3.png)
+{:refdef}
+
+Introduce el siguiente comando:
+
+```
+git clone URL
+```
+Donde URL es el enlace copiado. Para pegar, botón derecho en la consola y pegar. Si es la primera vez que lo hacemos es posible que nos pida un usuario y contraseña ya que el repositorio debería de estar configurado como privado. Automáticamente se descargará el repositorio con su contenido, en este caso el fichero .gitignore correspondiente a un proyecto java y una carpeta oculta .git donde está todo lo relativo al repositorio. La carpeta .git es donde nos indica que está el repositorio y nos da una pista donde debemos de hacer click derecho  para abrir la terminal.
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img4.png)
+{:refdef}
+
+Será en esta carpeta donde deberemos guardar el proyecto o lo que deseemos. Para nuestro ejemplo, un proyecto eclipse cualquiera:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img5.png)
+{:refdef}
+
+Veamos el ciclo de vida de Git (recuerda, repositorio local):
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_introduccion_git/img2.png)
+{:refdef}
+
+Nuestros ficheros se encuentran en el estado "untracked", lo que significa que no están siendo registrado por Git. Debemos añadirlos con el comando:
+
+```console
+$ git add .
+```
+El punto significa que añade todos los ficheros. Sería posible añadir únicamente las rutas que queramos.
+
+A continuación, es necesario realizar un commit con el comando:
+
+```console
+$ git commit -m "Prueba del commit"
+```
+Siendo lo que hay entre comillas la explicación de los cambios de ese commit. Es obligatorio y de suma importancia para saber que se ha cambiado.
+
+Si es el primer commit que realizas, es posible que te diga que introduzcas unas credenciales. Como se ha visto en el post configuración del usuario y email, podremos utilizar el correo proporcionado por GitHub para que se identifique los cambios con nuestro usuario. Para ello lanza el comando:
+
+```console
+$ git config --global user.email "emailquequeramos@email.com"
+$ git config --global user.name "MiNombre"
+```
+
+Ya tenemos nuestro repositorio local actualizado, pero nos falta un último paso. Deseamos que este repositorio local se suba a la nube. Para ello lanzamos el comando:
+
+```console
+$ git push
+```
+Y automáticamente todos los cambios se subirán a GitHub.
+
+Resumen:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_comandos/img6.png)
+{:refdef}
+
+Y, ¿qué ocurrirá si otra persona cambia el código que hay en la nube?. El clonado es necesario únicamente la primera vez que descargamos el proyecto. Una vez lo tenemos, los cambios se descargan mediante el comando:
+
+```console
+$ git pull
+```
