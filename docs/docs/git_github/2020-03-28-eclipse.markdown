@@ -1,0 +1,34 @@
+---
+layout: post
+title:  "Git y Eclipse"
+date:   2020-03-28 14:30:00 +0200
+categories: GitHub
+order: 1
+parent: Git y GitHub
+---
+
+# Git con eclipse
+
+Eclipse, como multitud de entornos de programación, proporciona una interfaz para trabajar con Git. Para ello hay que mostrar la perspectiva de Git:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_eclipse/img1.png)
+{:refdef}
+
+En esta perspectiva tenemos toda la gestión de Git:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_eclipse/img2.png)
+{:refdef}
+
+Con el botón derecho en el primer círculo tenemos las siguientes opciones:
+
+{:refdef: style="text-align: center;"}
+![Imagen]({{ site.baseurl }}/assets/img_post_eclipse/img3.png)
+{:refdef}
+
+Como se puede apreciar son las habituales. En el segundo círculo podemos hacer los commit y los push.
+
+Este es un proyecto que ya tenía un repositorio .git creado. Lo más fácil es clonar un repositorio de GitHub y poner en ese directorio nuestro proyecto para un primer commit, aunque también se puede crear un repositorio desde Eclipse:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/M88sKbRDR8Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
