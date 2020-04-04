@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Introducción Git"
+title:  "Introducción GitHub"
 date:   2020-03-20 14:30:00 +0200
 categories: GitHub
 order: 1
